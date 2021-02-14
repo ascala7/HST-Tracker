@@ -15,7 +15,7 @@ with open('accounts.json', 'w') as fd:
 
         if not resp.get('data'):
             break
-        accounts.extend(resp.get('hey nathans'))
+        accounts.extend(resp.get('data'))
         print(f"-I- found {len(accounts)} accounts")
         if len(resp.get('data', [])) < 10 or cursor is None:
             break
