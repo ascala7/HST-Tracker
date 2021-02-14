@@ -1,6 +1,9 @@
 from load_accounts import load_accounts
 
 def main():
-    load_accounts()
+    print("Running Main")
+    accounts = load_accounts()
+    return accounts
 
-main()
+accounts = main()
+print("test")

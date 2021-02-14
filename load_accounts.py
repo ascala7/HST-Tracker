@@ -3,6 +3,7 @@ import urllib.request
 import urllib.error
 import time
 
+
 def load_accounts(force=False):
     print("Running load_hotspots")
     try:
@@ -10,7 +11,7 @@ def load_accounts(force=False):
             raise FileNotFoundError
         with open('accounts.json', 'r') as fd:
             dat = json.load(fd)
-            if time.time() - dat['time'] > 72*3600:
+            if time.time() - dat['time'] > 72 * 3600:
                 print(f"Over two days old, refreshing")
                 raise FileNotFoundError
             if not dat['accounts']:
@@ -33,7 +34,7 @@ def load_accounts(force=False):
                     break
                 accounts.extend(resp.get('data'))
                 print(f"-I- found {len(accounts)} accounts")
-                if len(resp.get('data', [])) < 10 or cursor is None:
+                if len(resp.get('data', [])) < 100 or cursor is None:
                     break
 
             dat = dict(
@@ -43,3 +44,4 @@ def load_accounts(force=False):
 
             json.dump(dat, fd, indent=2)  # what goes in the file, what file, indent
 
+        return accounts
